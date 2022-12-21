@@ -60,7 +60,11 @@ function CounterComponent(props) {
     <>
       <Flex direction={'column'} alignItems="center">
         <NumberComponent count={count} />
-        <Select {...register('rewardSelect')} placeholder="Lựa chọn giải">
+        <Select
+          width={'715px'}
+          {...register('rewardSelect')}
+          placeholder="Lựa chọn giải"
+        >
           <option value={0}>Giải đặc biệt</option>
           <option value={1}>Giải nhất</option>
           <option value={2}>Giải nhì</option>
@@ -69,10 +73,20 @@ function CounterComponent(props) {
           <option value={5}>Giải may mắn lần 2</option>
         </Select>
         <Button
-          sx={{ width: '80px', height: '80px', borderRadius: '50%' }}
+          sx={{
+            width: '150px',
+            height: '150px',
+            borderRadius: '50%',
+            fontsize: '30px',
+            color: 'white',
+            backgroundColor: '#cd2d2f',
+            boxShadow: '-1px -1px 7px 13px',
+            marginTop: '30px',
+            textTransform: 'uppercase',
+          }}
           onClick={() => rolling()}
         >
-          Quay số
+          Quay
         </Button>
       </Flex>
 

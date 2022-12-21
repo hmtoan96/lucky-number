@@ -31,7 +31,7 @@ export default function NumberComponent({ count = '' }) {
   const numberArray =
     count === 0 ? [0, 0, 0, 0] : count.toString().padStart(4, '0').split('')
   return (
-    <Flex justify="center" sx={{ marginBottom: '100px' }}>
+    <Flex justify="center" sx={{ marginBottom: '70px' }}>
       {numberArray.map((char) => (
         <SingleNumber>{char}</SingleNumber>
       ))}
