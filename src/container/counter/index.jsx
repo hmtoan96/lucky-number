@@ -16,7 +16,10 @@ import {
   Text,
   Center,
   Select,
+  Flex,
+  Box,
 } from '@chakra-ui/react'
+import NumberComponent from './NumberComponent'
 
 function CounterComponent(props) {
   const refCounter = useRef(0)
@@ -52,19 +55,27 @@ function CounterComponent(props) {
   }
 
   const { register } = useFormContext()
-
+  console.log(count)
   return (
     <>
-      <h1>{count}</h1>
-      <Select {...register('rewardSelect')} placeholder="Lựa chọn giải">
-        <option value={0}>Giải đặc biệt</option>
-        <option value={1}>Giải nhất</option>
-        <option value={2}>Giải nhì</option>
-        <option value={3}>Giải ba</option>
-        <option value={4}>Giải may mắn lần 1</option>
-        <option value={5}>Giải may mắn lần 2</option>
-      </Select>
-      <Button onClick={() => rolling()}>Quay số</Button>
+      <Flex direction={'column'} alignItems="center">
+        <NumberComponent count={count} />
+        <Select {...register('rewardSelect')} placeholder="Lựa chọn giải">
+          <option value={0}>Giải đặc biệt</option>
+          <option value={1}>Giải nhất</option>
+          <option value={2}>Giải nhì</option>
+          <option value={3}>Giải ba</option>
+          <option value={4}>Giải may mắn lần 1</option>
+          <option value={5}>Giải may mắn lần 2</option>
+        </Select>
+        <Button
+          sx={{ width: '80px', height: '80px', borderRadius: '50%' }}
+          onClick={() => rolling()}
+        >
+          Quay số
+        </Button>
+      </Flex>
+
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>

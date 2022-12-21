@@ -1,9 +1,8 @@
 import styled from '@emotion/styled'
 import { useForm, useFieldArray, FormProvider } from 'react-hook-form'
-import { Button } from '@chakra-ui/react'
+import { Box, Button, Image } from '@chakra-ui/react'
 import { produce } from 'immer'
 import goldUrl from './assets/images/special-reward.png'
-import backgroundUrl from './assets/images/background-image.png'
 import RewardComponent from './container/reward'
 import CounterComponent from './container/counter'
 import './App.css'
@@ -106,13 +105,11 @@ function App() {
   return (
     <div className="App">
       <FormProvider {...methods}>
-        <Wrapper>
-          <RewardComponent fields={fields} />
-          <CounterComponent
-            updateReward={update}
-            addNewEmployee={handleAddEmployee}
-          />
-        </Wrapper>
+        <CounterComponent
+          updateReward={update}
+          addNewEmployee={handleAddEmployee}
+        />
+        <RewardComponent fields={fields} />
       </FormProvider>
     </div>
   )
