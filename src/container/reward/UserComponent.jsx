@@ -6,9 +6,8 @@ export default function UserComponent(props) {
   return (
     <Flex alignItems="center" sx={{ gap: '10px' }}>
       <Avatar src={imgSrc} />
-      <Text>{name}</Text>
+      <Text sx={{ color: 'white', fontWeight: 'semi-bold' }}>{name}</Text>
       <Spacer />
-      <Text>{id}</Text>
     </Flex>
   )
 }

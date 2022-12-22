@@ -77,7 +77,7 @@ function CounterComponent(props) {
             width: '150px',
             height: '150px',
             borderRadius: '50%',
-            fontsize: '30px',
+            fontSize: '40px',
             color: 'white',
             backgroundColor: '#cd2d2f',
             boxShadow: '-1px -1px 7px 13px',
@@ -90,7 +90,7 @@ function CounterComponent(props) {
         </Button>
       </Flex>
 
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Xác nhận trúng giải</ModalHeader>

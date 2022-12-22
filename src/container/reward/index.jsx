@@ -10,15 +10,24 @@ function RewardComponent({ fields }) {
       {fields.map((item, index) => {
         if (index === parseInt(selectId))
           return (
-            <Box boxSize="sm">
-              <Text>{item.name}</Text>
-              <Avatar bg={'red'} size={'xl'} src={item.imageSrc} />
-              <Flex flexDirection={'column'}>
+            <Flex alignItems={'center'} sx={{ marginTop: '50px' }}>
+              <Flex
+                direction={'column'}
+                sx={{ padding: '10px 30px', gap: '10px' }}
+              >
+                <Text
+                  sx={{ fontSize: '20px', color: 'red', fontWeight: 'bold' }}
+                >
+                  {item.name}
+                </Text>
+                <Avatar bg={'red'} size={'2xl'} src={item.imageSrc} />
+              </Flex>
+              <Flex sx={{ gap: '20px' }}>
                 {item.employees.map((employee) => (
                   <UserComponent employee={employee} />
                 ))}
               </Flex>
-            </Box>
+            </Flex>
           )
       })}
     </Flex>
