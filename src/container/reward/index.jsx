@@ -6,17 +6,27 @@ function RewardComponent({ fields }) {
   const { watch } = useFormContext()
   const selectId = watch('rewardSelect')
   return (
-    <Flex justifyContent={'space-between'}>
+    <Flex
+      justifyContent={'space-between'}
+      sx={{ maxWidth: '1000px', margin: '0 auto' }}
+      direction={'column'}
+    >
       {fields.map((item, index) => {
         if (index === parseInt(selectId))
           return (
-            <Flex alignItems={'center'} sx={{ marginTop: '50px' }}>
+            <Flex direction={'column'} alignItems={'center'}>
               <Flex
                 direction={'column'}
                 sx={{ padding: '10px 30px', gap: '10px' }}
+                alignItems={'center'}
               >
                 <Text
-                  sx={{ fontSize: '20px', color: 'red', fontWeight: 'bold' }}
+                  sx={{
+                    textTransform: 'uppercase',
+                    fontSize: '35px',
+                    color: 'white',
+                    fontWeight: 'bold',
+                  }}
                 >
                   {item.name}
                 </Text>

@@ -8,7 +8,7 @@ const SingleNumber = ({ children }) => {
     font-weight: bold;
     border: 3px solid white;
     border-right: none;
-    background-color: #cd2d2f;
+    background-color: #e53e3ebf;
     &:last-child {
       border-right: 3px solid white;
     }
@@ -28,10 +28,9 @@ const SingleNumber = ({ children }) => {
 }
 
 export default function NumberComponent({ count = '' }) {
-  const numberArray =
-    count === 0 ? [0, 0, 0, 0] : count.toString().padStart(4, '0').split('')
+  const numberArray = count.split('')
   return (
-    <Flex justify="center" sx={{ marginBottom: '70px' }}>
+    <Flex justify="center">
       {numberArray.map((char) => (
         <SingleNumber>{char}</SingleNumber>
       ))}
