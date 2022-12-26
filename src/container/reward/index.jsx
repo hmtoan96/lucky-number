@@ -8,7 +8,11 @@ function RewardComponent({ fields }) {
   return (
     <Flex
       justifyContent={'space-between'}
-      sx={{ maxWidth: '1000px', margin: '0 auto' }}
+      sx={{
+        maxWidth: '1200px',
+        margin: '0 auto',
+        marginTop: '10px',
+      }}
       direction={'column'}
     >
       {fields.map((item, index) => {
@@ -30,9 +34,16 @@ function RewardComponent({ fields }) {
                 >
                   {item.name}
                 </Text>
-                <Avatar bg={'red'} size={'2xl'} src={item.imageSrc} />
+                <Flex gap={'40px'}>
+                  {item.imageSrc.map((img) => (
+                    <Avatar bg={'red'} size={'2xl'} src={img} />
+                  ))}
+                </Flex>
               </Flex>
-              <Flex sx={{ gap: '20px' }}>
+
+              <Flex
+                sx={{ gap: '20px', flexWrap: 'wrap', justifyContent: 'center' }}
+              >
                 {item.employees.map((employee) => (
                   <UserComponent employee={employee} />
                 ))}

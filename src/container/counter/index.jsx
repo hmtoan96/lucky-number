@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { faker } from '@faker-js/faker'
+import styled from '@emotion/styled'
 import { useFormContext } from 'react-hook-form'
 import {
   useDisclosure,
@@ -12,40 +13,63 @@ import {
   ModalBody,
   ModalCloseButton,
   Stack,
-  Avatar,
   Text,
-  Center,
   Flex,
   Card,
   CardBody,
-  CardFooter,
   Image,
   Select,
 } from '@chakra-ui/react'
+import { dataID } from '/src/data'
 import NumberComponent from './NumberComponent'
+
+const StyledText = styled(Text)`
+  font-weight: bold;
+  span {
+    font-weight: normal;
+  }
+`
+
+const ImageComponent = ({ userID }) => {
+  const [imgSrc, setImgSrc] = useState(`/img/anhnv/${userID}.JPG`)
+  const resetImageSrc = () => {
+    setImgSrc(`/img/anhnv/${userID}.PNG`)
+  }
+  useEffect(() => {
+    setImgSrc(`/img/anhnv/${userID}.JPG`)
+  }, [])
+
+  return (
+    <Image
+      objectFit="cover"
+      w={250}
+      height={300}
+      src={imgSrc}
+      onError={resetImageSrc}
+      alt="Employee"
+    />
+  )
+}
 
 function CounterComponent(props) {
   const refCounter = useRef(0)
-  const { addNewEmployee } = props
+  const { addNewEmployee, users } = props
   const [count, setCount] = useState(0)
   const [isRolling, setRolling] = useState(false)
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const buttonRef = useRef(null)
 
   let counter = refCounter.current
-
-  const listEmployee = {
-    1: { id: 1, name: 'Rolando Mitchell', department: 'IT' },
-  }
-
+  const countId = count.toString().padStart(4, '0')
   const rolling = () => {
-    const range = faker.datatype.number({ min: 15, max: 100 })
+    const range = faker.datatype.number({ min: 15, max: 50 })
     setRolling(true)
     const intervalId = setInterval(() => {
-      if (counter < 10) {
+      if (counter < range) {
         counter++
-        setCount(faker.datatype.number({ min: 0, max: 1200 }))
+        setCount(dataID[Math.floor(Math.random() * dataID.length)])
       }
-      if (counter >= 10) {
+      if (counter >= range) {
         setTimeout(() => {
           onOpen()
           setRolling(false)
@@ -57,14 +81,11 @@ function CounterComponent(props) {
 
   const handleOnClickAccept = () => {
     onClose()
-    addNewEmployee(1)
+    addNewEmployee(countId)
   }
 
-  const { register } = useFormContext()
-
-  const resetImageSrc = () => {
-    console.log('image error')
-  }
+  const { register, watch } = useFormContext()
+  const selectId = watch('rewardSelect')
 
   const rewardData = [
     {
@@ -92,6 +113,7 @@ function CounterComponent(props) {
       value: 0,
     },
   ]
+
   return (
     <>
       <Flex direction={'column'} alignItems="center">
@@ -130,14 +152,20 @@ function CounterComponent(props) {
               border: '5px solid white',
             }}
             onClick={() => rolling()}
-            disabled={isRolling}
+            disabled={isRolling || selectId === ''}
           >
             Quay
           </Button>
         </Flex>
       </Flex>
 
-      <Modal size={'lg'} isOpen={isOpen} onClose={onClose} isCentered>
+      <Modal
+        finalFocusRef={buttonRef}
+        size={'xl'}
+        isOpen={isOpen}
+        onClose={onClose}
+        isCentered
+      >
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Xác nhận trúng giải</ModalHeader>
@@ -148,29 +176,34 @@ function CounterComponent(props) {
               overflow="hidden"
               variant="outline"
             >
-              <Image
-                objectFit="cover"
-                maxW={{ base: '100%', sm: '200px' }}
-                src={`/img/anhnv/${count.toString().padStart(4, '0')}.JPG`}
-                onError={() => resetImageSrc()}
-                alt="Caffe Latte"
-              />
+              <ImageComponent userID={countId} />
 
               <Stack>
                 <CardBody>
                   <Stack>
-                    <Text>ID: {listEmployee[1].id}</Text>
-                    <Text>Name: {listEmployee[1].name}</Text>
-                    <Text>Department: {listEmployee[1].department}</Text>
-                    <Text>Xin chúc mừng nhân viên!</Text>
+                    <StyledText>
+                      ID: <span>{users[countId]?.id}</span>
+                    </StyledText>
+                    <StyledText>
+                      Name: <span>{users[countId]?.name}</span>
+                    </StyledText>
+                    <StyledText>
+                      Department: <span>{users[countId]?.department}</span>
+                    </StyledText>
                   </Stack>
                 </CardBody>
               </Stack>
             </Card>
+            <Text>Xin chúc mừng nhân viên!</Text>
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={handleOnClickAccept}>
+            <Button
+              ref={buttonRef}
+              colorScheme="blue"
+              mr={3}
+              onClick={handleOnClickAccept}
+            >
               Đồng ý
             </Button>
             <Button onClick={onClose}>Hủy bỏ</Button>
