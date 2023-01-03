@@ -3,6 +3,7 @@ import { Avatar, Flex, Spacer, Text } from '@chakra-ui/react'
 
 export default function UserComponent(props) {
   const { name, id } = props.employee
+  console.log(props.employee)
   const [imgSrc, setImgSrc] = useState(
     `/img/anhnv/${id.toString().padStart(4, '0')}.PNG`
   )
@@ -34,7 +35,17 @@ export default function UserComponent(props) {
       >
         {name}
       </Text>
-      <Spacer />
+      <Text
+        sx={{
+          color: 'white',
+          fontWeight: 'semi-bold',
+          fontSize: '30px',
+          whiteSpace: 'nowrap',
+          marginLeft: '10px',
+        }}
+      >
+        {id}
+      </Text>
     </Flex>
   )
 }
