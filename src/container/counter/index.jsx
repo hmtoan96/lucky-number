@@ -116,28 +116,9 @@ function CounterComponent(props) {
 
   return (
     <>
-      <Flex direction={'column'} alignItems="center">
-        <NumberComponent count={count.toString().padStart(4, '0')} />
-        <Flex sx={{ gap: '20px' }} alignItems="center">
-          <Select
-            width={'500px'}
-            sx={{
-              borderWidth: '2px',
-              backgroundColor: '#e53e3ebf',
-              fontSize: '30px',
-              padding: '0 10px',
-              height: '70px',
-            }}
-            color="white"
-            placeholder="Lựa chọn giải"
-            {...register('rewardSelect')}
-          >
-            {rewardData.map((reward) => (
-              <option style={{ color: 'black' }} value={reward.value}>
-                {reward.label}
-              </option>
-            ))}
-          </Select>
+      <Flex sx={{ gap: '20px' }} direction={'column'} alignItems="center">
+        <Flex sx={{ gap: '20px' }}>
+          <NumberComponent count={count.toString().padStart(4, '0')} />
           <Button
             sx={{
               width: '200px',
@@ -156,6 +137,27 @@ function CounterComponent(props) {
           >
             Quay
           </Button>
+        </Flex>
+        <Flex sx={{ gap: '20px' }} alignItems="center">
+          <Select
+            width={'940px'}
+            sx={{
+              borderWidth: '2px',
+              backgroundColor: '#e53e3ebf',
+              fontSize: '30px',
+              padding: '0 10px',
+              height: '70px',
+            }}
+            color="white"
+            placeholder="Lựa chọn giải"
+            {...register('rewardSelect')}
+          >
+            {rewardData.map((reward) => (
+              <option style={{ color: 'black' }} value={reward.value}>
+                {reward.label}
+              </option>
+            ))}
+          </Select>
         </Flex>
       </Flex>
 

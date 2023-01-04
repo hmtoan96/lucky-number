@@ -9,7 +9,6 @@ function RewardComponent({ fields }) {
     <Flex
       justifyContent={'space-between'}
       sx={{
-        maxWidth: '1200px',
         margin: '0 auto',
         marginTop: '10px',
       }}
@@ -20,7 +19,6 @@ function RewardComponent({ fields }) {
           return (
             <Flex direction={'column'} alignItems={'center'}>
               <Flex
-                direction={'column'}
                 sx={{ padding: '10px 30px', gap: '10px' }}
                 alignItems={'center'}
               >

@@ -16,7 +16,7 @@ export default function UserComponent(props) {
     <Flex
       alignItems="center"
       sx={{
-        gap: '10px',
+        gap: '5px',
         overflow: 'hidden',
         border: '2px solid white',
         borderRadius: '25px',
@@ -25,27 +25,28 @@ export default function UserComponent(props) {
       }}
     >
       <Avatar size="lg" src={imgSrc} onError={getImageSource} />
-      <Text
-        sx={{
-          color: 'white',
-          fontWeight: 'semi-bold',
-          fontSize: '30px',
-          whiteSpace: 'nowrap',
-        }}
-      >
-        {name}
-      </Text>
-      <Text
-        sx={{
-          color: 'white',
-          fontWeight: 'semi-bold',
-          fontSize: '30px',
-          whiteSpace: 'nowrap',
-          marginLeft: '10px',
-        }}
-      >
-        {id}
-      </Text>
+      <Flex direction={'column'}>
+        <Text
+          sx={{
+            color: 'white',
+            fontWeight: 'semi-bold',
+            fontSize: '25px',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          {name}
+        </Text>
+        <Text
+          sx={{
+            color: 'white',
+            fontWeight: 'semi-bold',
+            fontSize: '20px',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          {id}
+        </Text>
+      </Flex>
     </Flex>
   )
 }
